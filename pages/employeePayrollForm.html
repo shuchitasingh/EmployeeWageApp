@@ -1,82 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <title>Employee payroll</title>
-    <link rel="stylesheet" href="../css/employeePayrollForm.css" />
-    <script src="../js/employeePayrollForm.js"></script>
-</head>
-
-<body>
-    <header class="header-content header">
-        <div class="logo-content">
-            <img src="../assets/logo/logoPic.png" alt="">
-            <div>
-                <span class="emp-text">EMPLOYEE</span><br>
-                <span class="emp-text emp-payroll">PAYROLL</span>
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <title>Employee payroll</title>
+        <link rel="stylesheet" href="../css/employeePayrollForm.css" />
+        <script src="../js/employeePayrollForm.js" defer></script>
+    </head>
+    
+    <body>
+        <header class="header-content header">
+            <div class="logo-content">
+                <img src="../assets/images/logo.png" alt="">
+                <div>
+                    <span class="emp-text">EMPLOYEE</span><br>
+                    <span class="emp-text emp-payroll">PAYROLL</span>
+                </div>
             </div>
-        </div>
-    </header>
-    <div class="form-content">
-        <form class="form" action="#" onreset="resetForm()" onsubmit="save(); return false">
-            <div class="form-head">
-                Employee Payroll Form
-            </div>
-            <div class="row-content">
-                <label class="label text" for="name">Name</label>
-                <input class="input" type="text" id="name" name="name" placeholder="Your name..." required>
-                <error-output class="text-error" for="text"></error-output>
-            </div>
-            <div class="row-content">
-                <label class="label text" for="profile">Profile images</label>
-                <div class="profile-radio-content">
-                    <label>
-                        <input type="radio" id="profile1" name="profile" value="../assets/profile-images/img2.png"
-                            required>
-                        <img class="profile" id="image1" src="../assets/profile-images/img2.PNG">
-                    </label>
-                    <label>
-                        <input type="radio" id="profile2" name="profile" value="../assets/profile-images/img5.png"
-                            required>
-                        <img class="profile" id="image2" src="../assets/profile-images/img5.PNG">
-                    </label>
-                    <label>
-                        <input type="radio" id="profile3" name="profile" value="../assets/profile-images/img4.png"
-                            required>
-                        <img class="profile" id="image3" src="../assets/profile-images/img4.PNG">
-                    </label>
-                    <label>
-                        <input type="radio" id="profile4" name="profile" value="../assets/profile-images/img1.png"
-                            required>
-                            <img class="profile" id="image4" src="../assets/profile-images/img1.PNG">
+        </header>
+        <div class="form-content">
+            <form class="form" action="#" onreset="resetForm()" onsubmit="save(); return false">
+                <div class="form-head">
+                    Employee Payroll Form
+                </div>
+                <div class="row-content">
+                    <label class="label text" for="name">Name</label>
+                    <input class="input" type="text" id="name" name="name" placeholder="Your name..." required>
+                    <error-output class="text-error" for="text"></error-output>
+                    <error-output class="text-error-new" for="text"></error-output>
+                    
+                </div>
+                <div class="row-content">
+                    <label class="label text" for="profile">Profile images</label>
+                    <div class="profile-radio-content">
+                        <label>
+                            <input type="radio" id="profile1" name="profile" value="../assets/profile-images/img1.png"
+                                required>
+                            <img class="profile" id="image1" src="../assets/profile-images/img1.png">
                         </label>
-                    </div>
-                </div>
-                <div class="row-content">
-                    <label class="label text" for="gender">Gender</label>
-                    <div>
-                        <input type="radio" id="male" name="gender" value="male">
-                        <label class="text" for="male">Male</label>
-                        <input type="radio" id="female" name="gender" value="female">
-                        <label class="text" for="female">Female</label>
-                    </div>
-                </div>
-                <div class="row-content">
-                    <label class="label text" for="department">Department</label>
-                    <div>
-                        <input class="checkbox" type="checkbox" id="hr" name="hr" value="HR">
-                        <label class="text" for="hr">HR</label>
-                        <input class="checkbox" type="checkbox" id="sales" name="sales" value="Sales">
-                        <label class="text" for="sales">Sales</label>
-                        <input class="checkbox" type="checkbox" id="finance" name="finance" value="Finance">
-                        <label class="text" for="finance">Finance</label>
-                        <input class="checkbox" type="checkbox" id="engineer" name="engineer" value="Engineer">
-                        <label class="text" for="engineer">Engineer</label>
-                        <input class="checkbox" type="checkbox" id="others" name="others" value="Others">
-                        <label class="text" for="others">Others</label>
+                        <label>
+                            <input type="radio" id="profile2" name="profile" value="../assets/profile-images/img4.png"
+                                required>
+                            <img class="profile" id="image2" src="../assets/profile-images/img4.PNG">
+                        </label>
+                        <label>
+                            <input type="radio" id="profile3" name="profile" value="../assets/profile-images/img3.png"
+                                required>
+                            <img class="profile" id="image3" src="../assets/profile-images/img3.PNG">
+                        </label>
+                        <label>
+                            <input type="radio" id="profile4" name="profile" value="../assets/profile-images/img2.png"
+                                required>
+                            <img class="profile" id="image4" src="../assets/profile-images/img2.PNG">
+                        </label>
                     </div>
                 </div>
                 <div class="row-content">
@@ -91,15 +70,15 @@
                 <div class="row-content">
                     <label class="label text" for="department">Department</label>
                     <div>
-                        <input class="checkbox" type="checkbox" id="hr" name="hr" value="HR">
+                        <input class="checkbox" type="checkbox" id="hr" name="departments" value="HR">
                         <label class="text" for="hr">HR</label>
-                        <input class="checkbox" type="checkbox" id="sales" name="sales" value="Sales">
+                        <input class="checkbox" type="checkbox" id="sales" name="departments" value="Sales">
                         <label class="text" for="sales">Sales</label>
-                        <input class="checkbox" type="checkbox" id="finance" name="finance" value="Finance">
+                        <input class="checkbox" type="checkbox" id="finance" name="departments" value="Finance">
                         <label class="text" for="finance">Finance</label>
-                        <input class="checkbox" type="checkbox" id="engineer" name="engineer" value="Engineer">
+                        <input class="checkbox" type="checkbox" id="engineer" name="departments" value="Engineer">
                         <label class="text" for="engineer">Engineer</label>
-                        <input class="checkbox" type="checkbox" id="others" name="others" value="Others">
+                        <input class="checkbox" type="checkbox" id="others" name="departments" value="Others">
                         <label class="text" for="others">Others</label>
                     </div>
                 </div>
@@ -182,8 +161,5 @@
                     </div>
                 </div>
             </form>
-        </div>
-
-    </body>
     
     </html>

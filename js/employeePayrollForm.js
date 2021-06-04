@@ -1,13 +1,5 @@
 class EmployeePayrollData {
 
-    constructor(...params) {
-        this.name = params[0];
-        this.salary = params[1];
-        this.gender = params[2];
-        this.startDate = params[3];
-        this.departments = params[4];
-    }
-
     get id() {
         return this._id;
     }
@@ -21,11 +13,11 @@ class EmployeePayrollData {
     }
 
     set name(name) {
-        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
         if (nameRegex.test(name)) {
             this._name = name;
         }
-        else throw 'Name is incorrect';
+        else throw 'Name is incorrect!';
     }
 
     get profilePic() {
@@ -110,73 +102,25 @@ class EmployeePayrollData {
     }
 }
 
-
-// function save() {
-//     let result;
-
-//     var name = document.getElementById("name").value;
-//     result = nameCheckRegex(name);
-
-//     var gender;
-//     if (document.getElementById("male").checked == true) gender = document.getElementById("male").value;
-//     else gender = document.getElementById("female").value;
-
-//     var salary = document.getElementById("salary").value;
-
-//     var day = document.getElementById("day").value;
-//     let month = document.getElementById("month").value;
-//     var year = document.getElementById("year").value;
-
-//     let result1 = dateCheck(day, month, year);
-
-//     let departmentArray = new Array();
-//     if (document.getElementById("hr").checked == true) departmentArray.push(document.getElementById("hr").value);
-//     if (document.getElementById("sales").checked == true) departmentArray.push(document.getElementById("sales").value);
-//     if (document.getElementById("finance").checked == true) departmentArray.push(document.getElementById("finance").value);
-//     if (document.getElementById("engineer").checked == true) departmentArray.push(document.getElementById("engineer").value);
-//     if (document.getElementById("others").checked == true) departmentArray.push(document.getElementById("others").value);
-
-//     if (result == false || result1 == false) alert("Correct the details!");
-//     else {
-//         alert("Details submitted successfully!!!");
-
-//         if (gender == "male") gender = "m";
-//         else gender = "f";
-
-//         if (month == "Jan") month = 1;
-//         if (month == "Feb") month = 2;
-//         if (month == "Mar") month = 3;
-//         if (month == "Apr") month = 4;
-//         if (month == "May") month = 5;
-//         if (month == "June") month = 6;
-//         if (month == "July") month = 7;
-//         if (month == "Aug") month = 8;
-//         if (month == "Sep") month = 9;
-//         if (month == "Oct") month = 10;
-//         if (month == "Nov") month = 11;
-//         if (month == "Dec") month = 12;
-
-//         let startDate = new Date(year, month - 1, day);
-
-//         let employeePayrollData = new EmployeePayrollData();
-
-//         employeePayrollData.name = name;
-//         employeePayrollData.salary = salary;
-//         employeePayrollData.gender = gender;
-//         employeePayrollData.startDate = startDate;
-//         employeePayrollData.departments = departmentArray;
-
-//         var returnedValue = employeePayrollData.toString();
-//         alert("Populared employee payroll object : " + returnedValue);
-//     }
-// }
-
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
+}
+
+function createAndUpdateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    } else {
+        employeePayrollList = [employeePayrollData];
+    }
+    alert("Local Storage Updated Successfully!\nTotal Employees : " + employeePayrollList.length);
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+
 }
 
 const createEmployeePayroll = () => {
@@ -192,7 +136,6 @@ const createEmployeePayroll = () => {
     employeePayrollData.departments = getSelectedValues('[name=departments]');
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.note = getInputValueById('#notes');
-    // let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
 
     let month = getInputValueById('#month');
     if (month == "Jan") month = 1;
@@ -231,11 +174,6 @@ const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
 }
-
-// const getInputElementValue = (id) => {
-//     let value = document.getElementById(id).value;
-//     return value;
-// }
 
 function nameCheckRegex(name) {
     let result = true;
@@ -309,3 +247,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
         output.textContent = salary.value;
     });
 });
+
+const resetForm = () => {
+    setValue('#name', '');
+    unsetSelectedValues('[name=profile]');
+    unsetSelectedValues('[name=gender]');
+    unsetSelectedValues('[name=departments]');
+    setValue('#salary', '');
+    setValue('#notes', '');
+    setValue('#month', 'January');
+    setValue('#year', '2020');
+}
+
+const unsetSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        item.checked = false;
+    });
+}
+
+const setTextValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
+}
+
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
+}
