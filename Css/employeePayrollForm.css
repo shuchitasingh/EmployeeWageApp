@@ -188,6 +188,13 @@ error-output{
     color: red;
 }
 
+.text-error-new{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: green;
+}
+
 @media only screen and (max-width: 960px){
     .cancelButton{
         margin-left: 0px;

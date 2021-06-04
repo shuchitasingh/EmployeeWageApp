@@ -111,65 +111,131 @@ class EmployeePayrollData {
 }
 
 
-function save() {
-    let result;
+// function save() {
+//     let result;
 
-    var name = document.getElementById("name").value;
-    result = nameCheckRegex(name);
+//     var name = document.getElementById("name").value;
+//     result = nameCheckRegex(name);
 
-    var gender;
-    if (document.getElementById("male").checked == true) gender = document.getElementById("male").value;
-    else gender = document.getElementById("female").value;
+//     var gender;
+//     if (document.getElementById("male").checked == true) gender = document.getElementById("male").value;
+//     else gender = document.getElementById("female").value;
 
-    var salary = document.getElementById("salary").value;
+//     var salary = document.getElementById("salary").value;
 
-    var day = document.getElementById("day").value;
-    let month = document.getElementById("month").value;
-    var year = document.getElementById("year").value;
+//     var day = document.getElementById("day").value;
+//     let month = document.getElementById("month").value;
+//     var year = document.getElementById("year").value;
 
-    let result1 = dateCheck(day, month, year);
+//     let result1 = dateCheck(day, month, year);
 
-    let departmentArray = new Array();
-    if (document.getElementById("hr").checked == true) departmentArray.push(document.getElementById("hr").value);
-    if (document.getElementById("sales").checked == true) departmentArray.push(document.getElementById("sales").value);
-    if (document.getElementById("finance").checked == true) departmentArray.push(document.getElementById("finance").value);
-    if (document.getElementById("engineer").checked == true) departmentArray.push(document.getElementById("engineer").value);
-    if (document.getElementById("others").checked == true) departmentArray.push(document.getElementById("others").value);
+//     let departmentArray = new Array();
+//     if (document.getElementById("hr").checked == true) departmentArray.push(document.getElementById("hr").value);
+//     if (document.getElementById("sales").checked == true) departmentArray.push(document.getElementById("sales").value);
+//     if (document.getElementById("finance").checked == true) departmentArray.push(document.getElementById("finance").value);
+//     if (document.getElementById("engineer").checked == true) departmentArray.push(document.getElementById("engineer").value);
+//     if (document.getElementById("others").checked == true) departmentArray.push(document.getElementById("others").value);
 
-    if (result == false || result1 == false) alert("Correct the details!");
-    else {
-        alert("Details submitted successfully!!!");
+//     if (result == false || result1 == false) alert("Correct the details!");
+//     else {
+//         alert("Details submitted successfully!!!");
 
-        if (gender == "male") gender = "m";
-        else gender = "f";
+//         if (gender == "male") gender = "m";
+//         else gender = "f";
 
-        if (month == "Jan") month = 1;
-        if (month == "Feb") month = 2;
-        if (month == "Mar") month = 3;
-        if (month == "Apr") month = 4;
-        if (month == "May") month = 5;
-        if (month == "June") month = 6;
-        if (month == "July") month = 7;
-        if (month == "Aug") month = 8;
-        if (month == "Sep") month = 9;
-        if (month == "Oct") month = 10;
-        if (month == "Nov") month = 11;
-        if (month == "Dec") month = 12;
+//         if (month == "Jan") month = 1;
+//         if (month == "Feb") month = 2;
+//         if (month == "Mar") month = 3;
+//         if (month == "Apr") month = 4;
+//         if (month == "May") month = 5;
+//         if (month == "June") month = 6;
+//         if (month == "July") month = 7;
+//         if (month == "Aug") month = 8;
+//         if (month == "Sep") month = 9;
+//         if (month == "Oct") month = 10;
+//         if (month == "Nov") month = 11;
+//         if (month == "Dec") month = 12;
 
-        let startDate = new Date(year, month - 1, day);
+//         let startDate = new Date(year, month - 1, day);
 
-        let employeePayrollData = new EmployeePayrollData();
+//         let employeePayrollData = new EmployeePayrollData();
 
-        employeePayrollData.name = name;
-        employeePayrollData.salary = salary;
-        employeePayrollData.gender = gender;
-        employeePayrollData.startDate = startDate;
-        employeePayrollData.departments = departmentArray;
+//         employeePayrollData.name = name;
+//         employeePayrollData.salary = salary;
+//         employeePayrollData.gender = gender;
+//         employeePayrollData.startDate = startDate;
+//         employeePayrollData.departments = departmentArray;
 
-        var returnedValue = employeePayrollData.toString();
-        alert("Populared employee payroll object : " + returnedValue);
+//         var returnedValue = employeePayrollData.toString();
+//         alert("Populared employee payroll object : " + returnedValue);
+//     }
+// }
+
+const save = () => {
+    try {
+        let employeePayrollData = createEmployeePayroll();
+    } catch (e) {
+        return;
     }
 }
+
+const createEmployeePayroll = () => {
+    let employeePayrollData = new EmployeePayrollData();
+    try {
+        employeePayrollData.name = getInputValueById('#name');
+    } catch (e) {
+        setTextValue('.text-error', e);
+        throw e;
+    }
+    employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop();
+    employeePayrollData.gender = getSelectedValues('[name=gender]').pop();
+    employeePayrollData.departments = getSelectedValues('[name=departments]');
+    employeePayrollData.salary = getInputValueById('#salary');
+    employeePayrollData.note = getInputValueById('#notes');
+    // let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
+
+    let month = getInputValueById('#month');
+    if (month == "Jan") month = 1;
+    if (month == "Feb") month = 2;
+    if (month == "Mar") month = 3;
+    if (month == "Apr") month = 4;
+    if (month == "May") month = 5;
+    if (month == "June") month = 6;
+    if (month == "July") month = 7;
+    if (month == "Aug") month = 8;
+    if (month == "Sep") month = 9;
+    if (month == "Oct") month = 10;
+    if (month == "Nov") month = 11;
+    if (month == "Dec") month = 12;
+
+    let startDate = new Date(getInputValueById('#year'), month - 1, getInputValueById('#day'));
+    if (dateCheck(getInputValueById('#day'), getInputValueById('#month'), getInputValueById('#year'))) {
+        employeePayrollData.startDate = startDate;
+        alert(employeePayrollData.toString());
+        return employeePayrollData;
+    } else {
+        alert("Correct details");
+    }
+}
+
+const getSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    let setItems = [];
+    allItems.forEach(item => {
+        if (item.checked) setItems.push(item.value);
+    });
+    return setItems;
+}
+
+const getInputValueById = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
+}
+
+// const getInputElementValue = (id) => {
+//     let value = document.getElementById(id).value;
+//     return value;
+// }
 
 function nameCheckRegex(name) {
     let result = true;
@@ -217,6 +283,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //event listener for name validation!!!!
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
+    const textErrorNew = document.querySelector('.text-error-new');
 
     name.addEventListener('input', function () {
         if (name.value.length == 0) {
@@ -226,8 +293,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         try {
             new EmployeePayrollData().name = name.value;
-            textError.textContent = "Fine!!";
+            textError.textContent = "";
+            textErrorNew.textContent = "Fine!!";
         } catch (e) {
+            textErrorNew.textContent = "";
             textError.textContent = e;
         }
     });
