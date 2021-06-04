@@ -158,7 +158,13 @@ function save() {
 
         let startDate = new Date(year, month - 1, day);
 
-        let employeePayrollData = new EmployeePayrollData(name, salary, gender, startDate, departmentArray);
+        let employeePayrollData = new EmployeePayrollData();
+
+        employeePayrollData.name = name;
+        employeePayrollData.salary = salary;
+        employeePayrollData.gender = gender;
+        employeePayrollData.startDate = startDate;
+        employeePayrollData.departments = departmentArray;
 
         var returnedValue = employeePayrollData.toString();
         alert("Populared employee payroll object : " + returnedValue);
@@ -167,7 +173,7 @@ function save() {
 
 function nameCheckRegex(name) {
     let result = true;
-    let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+    let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
     if (!(nameRegex.test(name))) {
         alert("Name incorrect");
         result = false;
@@ -204,3 +210,33 @@ function dateCheck(day, month, year) {
 
     return result;
 }
+
+
+window.addEventListener('DOMContentLoaded', (event) => {
+
+    //event listener for name validation!!!!
+    const name = document.querySelector('#name');
+    const textError = document.querySelector('.text-error');
+
+    name.addEventListener('input', function () {
+        if (name.value.length == 0) {
+            textError.textContent = "";
+            return;
+        }
+
+        try {
+            new EmployeePayrollData().name = name.value;
+            textError.textContent = "Fine!!";
+        } catch (e) {
+            textError.textContent = e;
+        }
+    });
+
+    //event listener for salary range bar!!!!
+    const salary = document.querySelector('#salary');
+    const output = document.querySelector('.salary-output');
+    output.textContent = salary.value;
+    salary.addEventListener('input', function () {
+        output.textContent = salary.value;
+    });
+});
