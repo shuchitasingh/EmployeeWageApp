@@ -78,11 +78,37 @@
                     </div>
                 </div>
                 <div class="row-content">
+                    <label class="label text" for="gender">Gender</label>
+                    <div>
+                        <input type="radio" id="male" name="gender" value="male" required>
+                        <label class="text" for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female" required>
+                        <label class="text" for="female">Female</label>
+                    </div>
+                </div>
+                <div class="row-content">
+                    <label class="label text" for="department">Department</label>
+                    <div>
+                        <input class="checkbox" type="checkbox" id="hr" name="hr" value="HR">
+                        <label class="text" for="hr">HR</label>
+                        <input class="checkbox" type="checkbox" id="sales" name="sales" value="Sales">
+                        <label class="text" for="sales">Sales</label>
+                        <input class="checkbox" type="checkbox" id="finance" name="finance" value="Finance">
+                        <label class="text" for="finance">Finance</label>
+                        <input class="checkbox" type="checkbox" id="engineer" name="engineer" value="Engineer">
+                        <label class="text" for="engineer">Engineer</label>
+                        <input class="checkbox" type="checkbox" id="others" name="others" value="Others">
+                        <label class="text" for="others">Others</label>
+                    </div>
+                </div>
+    
+                <div class="row-content">
                     <label class="label text" for="salary">Choose your salary: </label>
                     <input class="input" type="range" name="salary" id="salary" min="30000" max="60000" step="100"
                         value="40000">
                     <output class="salary-output text" for="salary">40000</output>
                 </div>
+    
                 <div class="row-content">
                     <label class="label text" for="startDate">Start Date</label>
                     <div>
@@ -142,8 +168,28 @@
                         </select>
                     </div>
                 </div>
+                <div class="row-content">
+                    <label class="label text" for="notes">Notes</label>
+                    <textarea id="notes" class="input" name="Notes" placeholder="" style="height:100px"></textarea>
+                </div>
+                <div class="buttonParent">
+                    <a href="./employeePayrollForm.html" class="resetButton button cancelButton">Cancel</a>
+                    <div class="submit-reset">
+                        <button type="submit" class="button submitButton" id="submitButton" onmouseover="">Submit</button>
+                        <button type="reset" class="resetButton button">Reset</button>
+                    </div>
+                </div>
             </form>
         </div>
+    
+        <script>
+            const salary = document.querySelector('#salary');
+            const output = document.querySelector('.salary-output');
+            output.textContent = salary.value;
+            salary.addEventListener('input', function () {
+                output.textContent = salary.value;
+            });
+        </script>
     </body>
     
     </html>
