@@ -8,6 +8,14 @@ class EmployeePayrollData {
         this.departments = params[4];
     }
 
+    get id() {
+        return this._id;
+    }
+
+    set id(id) {
+        this._id = id;
+    }
+
     get name() {
         return this._name;
     }
@@ -18,6 +26,17 @@ class EmployeePayrollData {
             this._name = name;
         }
         else throw 'Name is incorrect';
+    }
+
+    get profilePic() {
+        if (this._profilePic == undefined) {
+            return "Profile Pic None!!";
+        }
+        return this._profilePic;
+    }
+
+    set profilePic(profilePic) {
+        this._profilePic = profilePic;
     }
 
     get salary() {
@@ -37,7 +56,7 @@ class EmployeePayrollData {
     }
 
     set gender(gender) {
-        if (this._gender === undefined) {
+        if (this._gender == undefined) {
             this._gender = "m";
         } else {
             let genderRegex = RegExp('^[a-zA-Z]{1}$');
@@ -51,12 +70,10 @@ class EmployeePayrollData {
     }
 
     set startDate(startDate) {
-        if (this._startDate === undefined) {
+        if (startDate == undefined) {
             this._startDate = new Date();
         } else {
-            if ((startDate.getDay() <= new Date().getDay()) && (startDate.getMonth() <= new Date().getMonth())
-                && (startDate.getYear() <= new Date().getYear())) this._startDate = startDate;
-            else alert('startDate is incorrect');
+            this._startDate = startDate;
         }
     }
 
@@ -65,19 +82,31 @@ class EmployeePayrollData {
     }
 
     set departments(departments) {
-        if (this._departments == undefined) {
+        if (departments == undefined) {
             departments.push("None");
             this._departments = departments;
         }
         this._departments = departments;
     }
 
+    get note() {
+        if (this._note == undefined) {
+            return "Note None!!";
+        }
+        return this._note;
+    }
+
+    set note(note) {
+        this._note = note;
+    }
+
     toString() {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const empDate = this.startDate === undefined ? "undefined" :
             this.startDate.toLocaleDateString("en-US", options);
-        return "name: " + this.name + ", salary: " + this.salary + ", gender: "
-            + this.gender + ", startDate: " + empDate + ", departments: " + this.departments;
+        this._id = 1;
+        return "id: " + this.id + ", name: " + this.name + ", profile Pic: " + this.profilePic + ", salary: " + this.salary + ", gender: "
+            + this.gender + ", startDate: " + empDate + ", departments: " + this.departments + ", note: " + this.note;
     }
 }
 
@@ -97,6 +126,7 @@ function save() {
     var day = document.getElementById("day").value;
     let month = document.getElementById("month").value;
     var year = document.getElementById("year").value;
+
     let result1 = dateCheck(day, month, year);
 
     let departmentArray = new Array();
@@ -126,12 +156,13 @@ function save() {
         if (month == "Nov") month = 11;
         if (month == "Dec") month = 12;
 
-        let startDate = new Date(year, month, day);
+        let startDate = new Date(year, month - 1, day);
+
         let employeePayrollData = new EmployeePayrollData(name, salary, gender, startDate, departmentArray);
 
         var returnedValue = employeePayrollData.toString();
         alert("Populared employee payroll object : " + returnedValue);
-    };
+    }
 }
 
 function nameCheckRegex(name) {
