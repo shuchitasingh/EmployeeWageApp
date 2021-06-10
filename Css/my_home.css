@@ -83,10 +83,6 @@ html body{
     text-decoration: none;
 }
 
-*{
-    box-sizing: border-box;
-}
-
 .table-main {
     width: 80%;
     margin: 0 auto;
