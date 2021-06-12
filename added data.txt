@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "_name": "Mark",
+    "_gender": "male",
+    "_departments": [
+      "Engineering",
+      "Finance"
+    ],
+    "_salary": "500000",
+    "_startDate": "29 Oct 2019",
+    "_note": "All In One",
+    "_profilePic": "../assets/profile-images/img1.png"
+  },
+  {
+    "id": 2,
+    "_name": "Bill Gates",
+    "_gender": "male",
+    "_departments": [
+      "Engineering"
+    ],
+    "_salary": "500000",
+    "_startDate": "29 Oct 2019",
+    "_note": "Terrific Engineer",
+    "_profilePic": "../assets/profile-images/4.png"
+  },
+  {
+    "_name": "Narayannnn",
+    "_profilePic": "../assets/profile-images/img3.png",
+    "_gender": "male",
+    "_departments": [
+      "Engineer"
+    ],
+    "_salary": "51400",
+    "_note": "",
+    "_startDate": "1 Nov 2020",
+    "id": 4
+  },
+  {
+    "_name": "Shuchita",
+    "_profilePic": "../assets/profile-images/img1.png",
+    "_gender": "female",
+    "_departments": [
+      "Sales"
+    ],
+    "_salary": "40000",
+    "_note": " vcvc",
+    "_startDate": "1 Jan 2020",
+    "id": 5
+  },
+  {
+    "_name": "Zoya",
+    "_profilePic": "../assets/profile-images/img1.png",
+    "_gender": "female",
+    "_departments": [
+      "Sales",
+      "Finance"
+    ],
+    "_salary": "40000",
+    "_note": "",
+    "_startDate": "1 Jan 2020",
+    "id": 6
+  },
+  {
+    "_name": "Sid",
+    "_profilePic": "../assets/profile-images/img4.png",
+    "_gender": "male",
+    "_departments": [
+      "Finance",
+      "Engineer"
+    ],
+    "_salary": "40000",
+    "_note": "vdbfcbf",
+    "_startDate": "17 Mar 2017",
+    "id": 7
+  }
+]

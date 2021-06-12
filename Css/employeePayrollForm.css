@@ -1,4 +1,3 @@
-  
 body{
     margin:0;
     height: 100%;
@@ -211,9 +210,17 @@ date-error-output{
         width: 85%;
         padding: 44px 20px;
     }
+    .logo-content{
+        width: 85%;
+        padding: 44px 20px;
+    }
 }
 
 @media only screen and (max-width: 600px){
+    .logo-content{
+        width: 85%;
+        padding: 44px 20px;
+    }
     .form{
         margin-top: 10px;
     }
